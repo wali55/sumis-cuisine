@@ -10,7 +10,7 @@ const RecipePage = () => {
 
   return (
     <>
-      <Link className="btn btn-light my-3 ms-5" to="/">
+      <Link className="btn btn-light my-3" to="/" style={{ marginLeft: "6.8rem" }}>
         Go Back
       </Link>
       <Container style={{ maxWidth: "700px" }}>
