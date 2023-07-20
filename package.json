@@ -1,0 +1,33 @@
+{
+  "name": "sumis-cuisine",
+  "version": "1.0.0",
+  "description": "A Recipe blog where user can read and watch recipe",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm run dev --prefix frontend",
+    "development": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wali55/sumis-cuisine.git"
+  },
+  "author": "Mohammad Waliullah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wali55/sumis-cuisine/issues"
+  },
+  "homepage": "https://github.com/wali55/sumis-cuisine#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  }
+}

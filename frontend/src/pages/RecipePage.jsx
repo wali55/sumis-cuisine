@@ -1,19 +1,31 @@
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Container, ListGroup } from "react-bootstrap";
-import recipes from "../recipes";
+import axios from "axios";
 
 const RecipePage = () => {
+  const [recipe, setRecipe] = useState({});
+
   const { id: recipeId } = useParams();
-  console.log(recipes);
-  const recipe = recipes.find((r) => r._id === recipeId);
-  console.log(recipe);
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      const { data } = await axios.get(`http://localhost:5000/api/recipes/${recipeId}`);
+      console.log(data)
+      setRecipe(data);
+    }
+
+    fetchRecipe();
+  }, [recipeId]);
+
+  const ingredients = recipe?.ingredients || [];
 
   return (
     <>
-      <Link className="btn btn-light my-3" to="/" style={{ marginLeft: "6.8rem" }}>
-        Go Back
-      </Link>
       <Container style={{ maxWidth: "700px" }}>
+        <Link className="btn btn-light my-3" to="/">
+          Go Back
+        </Link>
         <h1>{recipe.title}</h1>
         <div
           className="my-5"
@@ -27,13 +39,20 @@ const RecipePage = () => {
         </div>
         <h4 className="mb-4">Ingredients:</h4>
         <ListGroup className="mb-4">
-          {recipe.ingredients.map((item, index) => (
+          {ingredients.map((item, index) => (
             <ListGroup.Item key={item}>
               {index + 1}. {item}
             </ListGroup.Item>
           ))}
         </ListGroup>
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "4rem", marginTop: "4rem" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "4rem",
+            marginTop: "4rem",
+          }}
+        >
           <iframe
             width="700"
             height="393.75"

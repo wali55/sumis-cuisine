@@ -1,8 +1,21 @@
+import { useState, useEffect } from "react";
 import Recipe from "../components/Recipe";
-import recipes from "../recipes";
 import { Row, Col, Container } from "react-bootstrap";
+import axios from "axios";
 
 const HomePage = () => {
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      const { data } = await axios.get("http://localhost:5000/api/recipes");
+      console.log(data)
+      setRecipes(data);
+    }
+
+    fetchRecipes();
+  }, []);
+
   return (
     <>
       <Container>
