@@ -8,10 +8,12 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      const { data } = await axios.get("http://localhost:5000/api/recipes");
-      console.log(data)
+      const { data } = await axios.get(
+        "https://sumis-cuisine.onrender.com/api/recipes"
+      );
+      console.log(data);
       setRecipes(data);
-    }
+    };
 
     fetchRecipes();
   }, []);

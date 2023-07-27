@@ -10,10 +10,12 @@ const RecipePage = () => {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-      const { data } = await axios.get(`http://localhost:5000/api/recipes/${recipeId}`);
-      console.log(data)
+      const { data } = await axios.get(
+        `https://sumis-cuisine.onrender.com/api/recipes/${recipeId}`
+      );
+      console.log(data);
       setRecipe(data);
-    }
+    };
 
     fetchRecipe();
   }, [recipeId]);
